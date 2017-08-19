@@ -64,6 +64,17 @@ def flip(structure):
       newstructure = newstructure + structure[i]
   return newstructure
 
+def flip2(structure):
+  newstructure = ""
+  for i in range(5):
+    if structure[i]=="A":
+      newstructure = newstructure + "C"
+    elif structure[i]=="C":
+      newstructure = newstructure + "A"
+    else:
+      newstructure = newstructure + structure[i]
+  return newstructure
+
 def findbest(structure):
   if structure[0] in ["B","C","D"]:
     while structure[0]!="A":
@@ -91,10 +102,13 @@ ifile = open("mc1kT.txt", "r").readlines()
 for line in ifile:
   best = findbest(line[:-1])
   best2 = findbest(flip(line[:-1]))
+  best3 = findbest(flip2(line[:-1]))
   if best in found:
     pops[found.index(best)] = pops[found.index(best)] + 1
   elif best2 in found:
     pops[found.index(best2)] = pops[found.index(best2)] + 1
+  elif best3 in found:
+    pops[found.index(best3)] = pops[found.index(best3)] + 1
   else:
     found.append(best)
     pops.append(0)
